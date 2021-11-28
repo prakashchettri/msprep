@@ -1,13 +1,13 @@
 package com.interviewprep.msprep.restService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.interviewprep.msprep.controller.Circle;
 import com.interviewprep.msprep.controller.JokeController;
+import com.interviewprep.msprep.controller.Rectangle;
 import com.interviewprep.msprep.model.JokeObject;
-import com.interviewprep.msprep.service.Shape;
 
 @RestController
 public class JokeRestService {
@@ -15,12 +15,15 @@ public class JokeRestService {
 	JokeController jokeC;
 
 	@Autowired
-	@Qualifier(value = "Circle")
-	Shape s;
+	Circle c;
+
+	@Autowired
+	Rectangle r;
 
 	@GetMapping("/")
 	public JokeObject sayHi() {
-		s.draw();
+		c.draw();
+		r.draw();
 		return jokeC.getJoke();
 	}
 
